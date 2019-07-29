@@ -1,4 +1,4 @@
-package com.mobisoft.thesongapp
+package com.mobisoft.songapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
