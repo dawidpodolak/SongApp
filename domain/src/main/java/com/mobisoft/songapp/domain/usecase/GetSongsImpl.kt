@@ -17,8 +17,6 @@ class GetSongsImpl @Inject constructor(
     @RepoSongQualifier(Local) private val localSongRepository: SongRepository
 ): GetSongs {
 
-    override fun getSongs(remote: Boolean, local: Boolean): Single<List<SongEntity>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getSongs(remote: Boolean, local: Boolean): Single<List<SongEntity>> = localSongRepository.getSongs()
 
 }

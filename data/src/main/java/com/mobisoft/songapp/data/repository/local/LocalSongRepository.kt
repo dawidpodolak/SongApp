@@ -12,6 +12,7 @@ import javax.inject.Singleton
  */
 //@Singleton
 internal class LocalSongRepository @Inject constructor() : SongRepository {
+
     override fun getSongs(): Single<List<SongEntity>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
