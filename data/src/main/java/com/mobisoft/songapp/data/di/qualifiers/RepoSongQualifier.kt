@@ -11,7 +11,7 @@ import kotlin.annotation.AnnotationRetention.*
 @Qualifier
 @Documented
 @Retention(RUNTIME)
-annotation class StoreQualifier(val store: StoreType) {
+annotation class RepoSongQualifier(val store: StoreType) {
 
     enum class StoreType { Local, Remote}
 }
