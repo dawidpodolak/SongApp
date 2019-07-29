@@ -10,7 +10,7 @@ import javax.inject.Singleton
  * @author Dawid Podolak
  * Created at 2019-07-29
  */
-@Singleton
+//@Singleton
 internal class RemoteSongRepository @Inject constructor() : SongRepository {
     override fun getSongs(): Single<List<SongEntity>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

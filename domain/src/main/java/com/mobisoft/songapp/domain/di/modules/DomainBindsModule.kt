@@ -2,6 +2,7 @@ package com.mobisoft.songapp.domain.di.modules
 
 import com.mobisoft.songapp.domain.usecase.GetSongs
 import com.mobisoft.songapp.domain.usecase.GetSongsImpl
+import dagger.Binds
 import dagger.Module
 
 /**
@@ -11,5 +12,6 @@ import dagger.Module
 @Module
 abstract class DomainBindsModule {
 
+    @Binds
     internal abstract fun bingGetSongs(getSongsImpl: GetSongsImpl): GetSongs
 }

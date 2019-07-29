@@ -11,7 +11,6 @@ import javax.inject.Singleton
  * @author Dawid Podolak
  * Created at 2019-07-29
  */
-@Singleton
 @Component (modules = [RepositoryBindModule::class])
 interface RepositoryComponent {
 
