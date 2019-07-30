@@ -2,7 +2,9 @@ package com.mobisoft.songapp.data.repository.remote
 
 import com.mobisoft.songapp.data.entity.SongEntity
 import com.mobisoft.songapp.data.repository.SongRepository
+import com.mobisoft.songapp.data.repository.remote.api.ItunesApi
 import io.reactivex.Single
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -11,8 +13,12 @@ import javax.inject.Singleton
  * Created at 2019-07-29
  */
 //@Singleton
-internal class RemoteSongRepository @Inject constructor() : SongRepository {
+internal class RemoteSongRepository @Inject constructor(private val api: ItunesApi) : SongRepository {
+
     override fun getSongs(): Single<List<SongEntity>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return api.searchSongs("jack johnson")
+            .doOnSuccess { Timber.d("search result: $it") }
+            .map { emptyList<SongEntity>() }
     }
+
 }

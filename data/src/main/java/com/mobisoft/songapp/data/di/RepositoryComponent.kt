@@ -1,5 +1,6 @@
 package com.mobisoft.songapp.data.di
 
+import com.mobisoft.songapp.data.di.modules.ApiModule
 import com.mobisoft.songapp.data.di.modules.MapperBindModule
 import com.mobisoft.songapp.data.di.modules.RepositoryBindModule
 import com.mobisoft.songapp.data.di.modules.RepositoryModule
@@ -13,7 +14,7 @@ import javax.inject.Singleton
  * @author Dawid Podolak
  * Created at 2019-07-29
  */
-@Component (modules = [RepositoryBindModule::class, RepositoryModule::class, MapperBindModule::class])
+@Component (modules = [RepositoryBindModule::class, RepositoryModule::class, MapperBindModule::class, ApiModule::class])
 interface RepositoryComponent {
 
     @RepoSongQualifier(Remote)
