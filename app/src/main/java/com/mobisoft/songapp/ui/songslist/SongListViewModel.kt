@@ -1,7 +1,9 @@
 package com.mobisoft.songapp.ui.songslist
 
-import androidx.lifecycle.ViewModel
 import com.mobisoft.songapp.domain.usecase.GetSongs
+import com.mobisoft.songapp.vm.BaseViewModel
+import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -10,6 +12,21 @@ import javax.inject.Inject
  */
 class SongListViewModel @Inject constructor(
     private val getSongs: GetSongs
-): ViewModel() {
+): BaseViewModel() {
+
+    init {
+        Timber.d("init SongListViewModel")
+
+        getSongs.getSongs(true, true)
+            .subscribeOn(Schedulers.io())
+            .subscribe({
+                Timber.d("Song: $it")
+            }, {
+                Timber.e(it)
+            })
+            .also {
+                compositeDisposable.add(it)
+            }
+    }
 
 }
