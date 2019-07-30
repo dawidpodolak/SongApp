@@ -1,5 +1,6 @@
 package com.mobisoft.songapp.domain.di
 
+import android.content.Context
 import com.mobisoft.songapp.data.di.RepositoryComponentBuilder
 
 /**
@@ -8,9 +9,9 @@ import com.mobisoft.songapp.data.di.RepositoryComponentBuilder
  */
 object DomainComponentBuilder {
 
-    fun build(): DomainComponent =
+    fun build(context: Context): DomainComponent =
         DaggerDomainComponent.builder()
-            .repositoryComponent(RepositoryComponentBuilder.build())
+            .repositoryComponent(RepositoryComponentBuilder.build(context))
             .build()
 
 }

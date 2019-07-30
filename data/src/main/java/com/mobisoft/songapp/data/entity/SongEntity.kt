@@ -5,12 +5,8 @@ package com.mobisoft.songapp.data.entity
  * Created at 2019-07-29
  */
 data class SongEntity (
-    val songTitle: String,
-    val artistTitle: String,
+    val title: String,
+    val artist: String,
     val songAndArtist: String,
-    val releaseYear: Int,
-    val playCount: Int,
-    val first: Int,
-    val year: Int,
-    val fAndG: Int
-    )
+    val releaseYear: Int?,
+    val playCount: Int)

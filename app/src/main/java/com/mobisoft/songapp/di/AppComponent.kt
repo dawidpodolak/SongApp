@@ -2,6 +2,7 @@ package com.mobisoft.songapp.di
 
 import com.mobisoft.songapp.SongApp
 import com.mobisoft.songapp.di.modules.ActivityModule
+import com.mobisoft.songapp.di.modules.AppModule
 import com.mobisoft.songapp.di.modules.ViewModelModule
 import com.mobisoft.songapp.domain.di.DomainComponent
 import dagger.BindsInstance
@@ -14,7 +15,10 @@ import javax.inject.Singleton
  * Created at 2019-07-29
  */
 @Singleton
-@Component(modules = [AndroidInjectionModule::class, ActivityModule::class, ViewModelModule::class],dependencies = [DomainComponent::class])
+@Component(
+    modules = [AndroidInjectionModule::class, ActivityModule::class, ViewModelModule::class, AppModule::class],
+    dependencies = [DomainComponent::class]
+)
 interface AppComponent {
 
     @Component.Builder
@@ -24,6 +28,8 @@ interface AppComponent {
         fun application(app: SongApp): Builder
 
         fun domainComponent(domainComponent: DomainComponent): Builder
+
+        fun appModule(appModule: AppModule): Builder
 
         fun build(): AppComponent
     }

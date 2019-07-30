@@ -9,7 +9,7 @@ import kotlin.annotation.AnnotationRetention.*
  * Created at 2019-07-29
  */
 @Qualifier
-@Documented
+@MustBeDocumented
 @Retention(RUNTIME)
 annotation class RepoSongQualifier(val store: StoreType) {
 

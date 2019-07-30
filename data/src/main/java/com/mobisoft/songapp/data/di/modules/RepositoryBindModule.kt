@@ -5,6 +5,8 @@ import com.mobisoft.songapp.data.di.qualifiers.RepoSongQualifier.StoreType.Local
 import com.mobisoft.songapp.data.di.qualifiers.RepoSongQualifier.StoreType.Remote
 import com.mobisoft.songapp.data.repository.local.LocalSongRepository
 import com.mobisoft.songapp.data.repository.SongRepository
+import com.mobisoft.songapp.data.repository.local.LocalSongProvider
+import com.mobisoft.songapp.data.repository.local.LocalSongProviderImpl
 import com.mobisoft.songapp.data.repository.remote.RemoteSongRepository
 import dagger.Binds
 import dagger.Module
@@ -23,5 +25,8 @@ abstract class RepositoryBindModule {
     @RepoSongQualifier(Local)
     @Binds
     internal abstract fun bindsLocaleRepository(localSongRepository: LocalSongRepository): SongRepository
+
+    @Binds
+    internal abstract fun bindsLocalSongProvider(localSongProviderImpl: LocalSongProviderImpl): LocalSongProvider
 
 }
