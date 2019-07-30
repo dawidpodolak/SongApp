@@ -5,11 +5,13 @@ import com.mobisoft.songapp.data.entity.SongEntity
 import com.mobisoft.songapp.data.mapper.LocalSongModelToEntityMapper
 import com.mobisoft.songapp.data.mapper.Mapper
 import com.mobisoft.songapp.data.repository.model.LocalSongModel
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.mock
+import org.mockito.Mockito.*
 import java.io.ByteArrayInputStream
 import java.io.InputStream
 
@@ -20,7 +22,7 @@ import java.io.InputStream
 class LocalSongRepositoryTest {
 
     private val songProvider: LocalSongProvider = mock(LocalSongProvider::class.java)
-    private val mapper: Mapper<LocalSongModel, SongEntity> = LocalSongModelToEntityMapper()
+    private val mapper: Mapper<LocalSongModel, SongEntity> = spy(LocalSongModelToEntityMapper())
 
     private lateinit var testTarget: LocalSongRepository
 
@@ -39,6 +41,7 @@ class LocalSongRepositoryTest {
         val resultList = testObserver.values()[0]
 
         //verify
+        verify(mapper, times(2)).map(any())
         assertEquals(2, resultList.size)
 
         assertEquals("Caught Up in You", resultList[0].title)
