@@ -19,7 +19,7 @@ import javax.inject.Inject
 //@Singleton
 internal class LocalSongRepository @Inject constructor(
     private val songProvider: LocalSongProvider,
-    private val songMapper: Mapper<LocalSongModel, SongEntity>
+    private val songMapper: Mapper<@JvmSuppressWildcards LocalSongModel, SongEntity>
 ) : SongRepository {
 
     override fun getSongs(): Single<List<SongEntity>> = songProvider.getSongs()
