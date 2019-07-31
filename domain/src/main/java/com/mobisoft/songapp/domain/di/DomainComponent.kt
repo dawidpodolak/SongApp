@@ -3,6 +3,7 @@ package com.mobisoft.songapp.domain.di
 import com.mobisoft.songapp.domain.usecase.GetSongs
 import com.mobisoft.songapp.data.di.RepositoryComponent
 import com.mobisoft.songapp.domain.di.modules.DomainBindsModule
+import com.mobisoft.songapp.domain.di.modules.MapperBindsModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -11,7 +12,7 @@ import javax.inject.Singleton
  * Created at 2019-07-29
  */
 @DomainScope
-@Component(modules = [DomainBindsModule::class], dependencies = [RepositoryComponent::class])
+@Component(modules = [DomainBindsModule::class, MapperBindsModule::class], dependencies = [RepositoryComponent::class])
 interface DomainComponent {
 
     fun getSongs(): GetSongs
