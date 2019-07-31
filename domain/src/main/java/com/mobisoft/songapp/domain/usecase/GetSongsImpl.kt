@@ -6,6 +6,7 @@ import com.mobisoft.songapp.data.di.qualifiers.RepoSongQualifier.StoreType.Remot
 import com.mobisoft.songapp.data.entity.SongEntity
 import com.mobisoft.songapp.data.repository.SongRepository
 import com.mobisoft.songapp.domain.di.DomainScope
+import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -17,8 +18,28 @@ import javax.inject.Inject
 class GetSongsImpl @Inject constructor(
     @RepoSongQualifier(Remote) private val remoteSongRepository: SongRepository,
     @RepoSongQualifier(Local) private val localSongRepository: SongRepository
-): GetSongs {
+) : GetSongs {
 
-    override fun getSongs(remote: Boolean, local: Boolean): Single<List<SongEntity>> = remoteSongRepository.getSongs()
+    override fun getSongs(remote: Boolean, local: Boolean): Single<List<SongEntity>> = when {
+        remote && !local -> remoteSongRepository.getSongs()
+        !remote && local -> localSongRepository.getSongs()
+        remote && local -> {
+            val remoteSongObservable = remoteSongRepository
+                .getSongsAsObservable()
+
+            val localSongObservable = localSongRepository.getSongsAsObservable()
+            Observable.merge(remoteSongObservable, localSongObservable).toList()
+        }
+        else -> Single.just(emptyList())
+    }
+        .toObservable()
+        .flatMap { Observable.fromIterable(it) }
+        .toSortedList { songEntity1, songEntity2 -> songEntity1.title.compareTo(songEntity2.title) }
+
+
+    private fun SongRepository.getSongsAsObservable(): Observable<SongEntity> =
+        getSongs()
+            .onErrorReturnItem(emptyList())
+            .flatMapObservable { Observable.fromIterable(it) }
 
 }
