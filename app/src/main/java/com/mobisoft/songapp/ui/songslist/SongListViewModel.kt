@@ -1,5 +1,8 @@
 package com.mobisoft.songapp.ui.songslist
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.mobisoft.songapp.domain.entity.Song
 import com.mobisoft.songapp.domain.usecase.GetSongs
 import com.mobisoft.songapp.vm.BaseViewModel
 import io.reactivex.schedulers.Schedulers
@@ -13,12 +16,42 @@ import javax.inject.Inject
  */
 class SongListViewModel @Inject constructor(
     private val getSongs: GetSongs
-): BaseViewModel() {
+) : BaseViewModel() {
+
+    private val songsLiveData = MutableLiveData<List<Song>>()
+
+    private val remoteEnabled = MutableLiveData<Boolean>().apply {
+        value = true
+    }
+
+    private val localEnabled = MutableLiveData<Boolean>().apply {
+        value = true
+    }
+
+
+    var isRemote: LiveData<Boolean> = remoteEnabled
+        set(value) {
+            field = value
+            inflateSongs()
+        }
+
+    var isLocal: LiveData<Boolean> = localEnabled
+        set(value) {
+            field = value
+            inflateSongs()
+        }
 
     init {
         Timber.d("init SongListViewModel")
 
-        getSongs.getSongs(remote = true, local = true)
+        inflateSongs()
+    }
+
+    private fun inflateSongs() {
+        val isRemoteEnabled = remoteEnabled.value == true
+        val isLocalEnabled = localEnabled.value == true
+
+        getSongs.getSongs(remote = isRemoteEnabled, local = isLocalEnabled)
             .subscribeOn(Schedulers.io())
             .subscribe({
 
@@ -27,6 +60,8 @@ class SongListViewModel @Inject constructor(
                     stringBuilder.append(it).append("\n")
                 }
                 Timber.d("Songs: \n$stringBuilder")
+
+                songsLiveData.postValue(it)
             }, {
                 Timber.e(it)
             })
@@ -35,4 +70,5 @@ class SongListViewModel @Inject constructor(
             }
     }
 
+    fun getListSongs(): LiveData<List<Song>> = songsLiveData
 }

@@ -4,10 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mobisoft.songapp.R
+import com.mobisoft.songapp.databinding.SongListFragmentBinding
 import com.mobisoft.songapp.di.Injectable
+import com.mobisoft.songapp.domain.entity.Song
+import com.mobisoft.songapp.ui.songslist.recyclerView.SongListAdapter
 import com.mobisoft.songapp.vm.ViewModelFactory
 import javax.inject.Inject
 
@@ -26,10 +34,40 @@ class SongListFragment : Fragment(), Injectable {
 
     private lateinit var songListViewModel: SongListViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        inflater.inflate(R.layout.song_list_fragment, container, false)
+    private lateinit var binding: SongListFragmentBinding
+
+    private lateinit var songRecyclerView: RecyclerView
+    private lateinit var songsPlaceholder: TextView
+
+    private lateinit var songListAdapter: SongListAdapter
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.song_list_fragment, container, false)
+        songRecyclerView = binding.songsRecyclerView
+        songsPlaceholder = binding.emptySongsPlaceHolder
+
+        binding.lifecycleOwner = this
+
+        songListAdapter = SongListAdapter(requireContext())
+        songRecyclerView.adapter = songListAdapter
+
+        songRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         songListViewModel = ViewModelProviders.of(this, viewModelFactory).get(SongListViewModel::class.java)
+        binding.viewModel = songListViewModel
+
+        subscribeToViewModel()
+    }
+
+    private fun subscribeToViewModel() {
+        songListViewModel.getListSongs().observe(this,
+            Observer<List<Song>> {
+                songsPlaceholder.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
+                songListAdapter.setSongs(it)
+            })
     }
 }

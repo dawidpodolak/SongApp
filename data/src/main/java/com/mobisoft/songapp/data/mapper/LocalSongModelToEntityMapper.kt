@@ -22,6 +22,7 @@ class LocalSongModelToEntityMapper @Inject constructor(): Mapper<LocalSongModel,
 }
 
     private fun parseReleaseYear(releaseYear: Any): Int? = when (releaseYear) {
+        is Double -> releaseYear.toInt()
         is Int -> releaseYear
         is String -> releaseYear.toIntOrNull()
         else -> null

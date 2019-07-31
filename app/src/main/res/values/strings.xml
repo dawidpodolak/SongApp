@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TheSongApp</string>
+  <string name="please_select_source_of_songs">Please select source of songs</string>
+  <string name="year_format">Year: %d</string>
 </resources>
