@@ -2,6 +2,7 @@ package com.mobisoft.songapp.data.repository.local
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.mobisoft.songapp.data.di.DataScope
 import com.mobisoft.songapp.data.entity.SongEntity
 import com.mobisoft.songapp.data.mapper.Mapper
 import com.mobisoft.songapp.data.repository.SongRepository
@@ -16,7 +17,7 @@ import javax.inject.Inject
  * @author Dawid Podolak
  * Created at 2019-07-29
  */
-//@Singleton
+@DataScope
 internal class LocalSongRepository @Inject constructor(
     private val songProvider: LocalSongProvider,
     private val songMapper: Mapper<@JvmSuppressWildcards LocalSongModel, SongEntity>

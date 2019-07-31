@@ -5,6 +5,7 @@ import com.mobisoft.songapp.data.di.qualifiers.RepoSongQualifier.StoreType.Local
 import com.mobisoft.songapp.data.di.qualifiers.RepoSongQualifier.StoreType.Remote
 import com.mobisoft.songapp.data.entity.SongEntity
 import com.mobisoft.songapp.data.repository.SongRepository
+import com.mobisoft.songapp.domain.di.DomainScope
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -12,11 +13,12 @@ import javax.inject.Inject
  * @author Dawid Podolak
  * Created at 2019-07-29
  */
+@DomainScope
 class GetSongsImpl @Inject constructor(
     @RepoSongQualifier(Remote) private val remoteSongRepository: SongRepository,
     @RepoSongQualifier(Local) private val localSongRepository: SongRepository
 ): GetSongs {
 
-    override fun getSongs(remote: Boolean, local: Boolean): Single<List<SongEntity>> = localSongRepository.getSongs()
+    override fun getSongs(remote: Boolean, local: Boolean): Single<List<SongEntity>> = remoteSongRepository.getSongs()
 
 }

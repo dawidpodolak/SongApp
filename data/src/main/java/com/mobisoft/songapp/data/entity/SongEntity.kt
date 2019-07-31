@@ -9,4 +9,4 @@ data class SongEntity (
     val artist: String,
     val songAndArtist: String,
     val releaseYear: Int?,
-    val playCount: Int)
+    val playCount: Int?)

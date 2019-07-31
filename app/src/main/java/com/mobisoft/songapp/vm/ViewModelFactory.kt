@@ -2,15 +2,15 @@ package com.mobisoft.songapp.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.mobisoft.songapp.di.AppScope
 import javax.inject.Inject
 import javax.inject.Provider
-import javax.inject.Singleton
 
 /**
  * @author Dawid Podolak
  * Created at 2019-07-29
  */
-@Singleton
+@AppScope
 class ViewModelFactory @Inject constructor(
     private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
 ): ViewModelProvider.Factory{

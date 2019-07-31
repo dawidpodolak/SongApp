@@ -8,13 +8,12 @@ import com.mobisoft.songapp.domain.di.DomainComponent
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
-import javax.inject.Singleton
 
 /**
  * @author Dawid Podolak
  * Created at 2019-07-29
  */
-@Singleton
+@AppScope
 @Component(
     modules = [AndroidInjectionModule::class, ActivityModule::class, ViewModelModule::class, AppModule::class],
     dependencies = [DomainComponent::class]
