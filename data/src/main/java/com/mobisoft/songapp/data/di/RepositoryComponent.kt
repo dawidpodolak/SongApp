@@ -14,6 +14,7 @@ import javax.inject.Singleton
  * @author Dawid Podolak
  * Created at 2019-07-29
  */
+@DataScope
 @Component (modules = [RepositoryBindModule::class, RepositoryModule::class, MapperBindModule::class, ApiModule::class])
 interface RepositoryComponent {
 
