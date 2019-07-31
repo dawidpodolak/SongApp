@@ -1,6 +1,6 @@
 package com.mobisoft.songapp.data.repository.local
 
-import TEST_JSON
+import LOCAL_TEST_JSON
 import com.mobisoft.songapp.data.entity.SongEntity
 import com.mobisoft.songapp.data.mapper.LocalSongModelToEntityMapper
 import com.mobisoft.songapp.data.mapper.Mapper
@@ -32,7 +32,7 @@ class LocalSongRepositoryTest {
     }
 
     @Test
-    fun `when getSongs is called, list of songs should be returned`() {
+    fun `when getSongs is called, list of songs should be returned from LocalSongProvider`() {
         //when
         whenever(songProvider.getSongs()).thenReturn(getTestJsonInputStream())
 
@@ -41,14 +41,26 @@ class LocalSongRepositoryTest {
         val resultList = testObserver.values()[0]
 
         //verify
-        verify(mapper, times(2)).map(any())
+
+        verify(songProvider).getSongs()
         assertEquals(2, resultList.size)
 
         assertEquals("Caught Up in You", resultList[0].title)
         assertEquals("Fantasy Girl", resultList[1].title)
     }
 
-    private fun getTestJsonInputStream(): InputStream = ByteArrayInputStream(TEST_JSON.toByteArray())
+    private fun getTestJsonInputStream(): InputStream = ByteArrayInputStream(LOCAL_TEST_JSON.toByteArray())
 
+    @Test
+    fun `when getSongs is called, map method should be used to convert`() {
+        //when
+        whenever(songProvider.getSongs()).thenReturn(getTestJsonInputStream())
+
+        //then
+        testTarget.getSongs().test()
+
+        //verify
+        verify(mapper, times(2)).map(any())
+    }
 
 }
