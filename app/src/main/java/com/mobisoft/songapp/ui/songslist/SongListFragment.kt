@@ -2,6 +2,8 @@ package com.mobisoft.songapp.ui.songslist
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -68,8 +70,13 @@ class SongListFragment : Fragment(), Injectable {
     if (activity is AppCompatActivity) {
       with(activity as AppCompatActivity) {
         setSupportActionBar(binding.toolbar)
+        setHasOptionsMenu(true)
       }
     }
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    inflater?.inflate(R.menu.toolbar_menu, menu)
   }
 
   override fun onViewCreated(

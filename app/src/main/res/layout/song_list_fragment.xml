@@ -20,7 +20,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:theme="@style/ToolbarTheme"/>
+        android:theme="@style/ToolbarTheme"
+        app:popupTheme="@style/ToolbarPopTheme"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/songs_recycler_view"

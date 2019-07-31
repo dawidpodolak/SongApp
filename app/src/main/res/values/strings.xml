@@ -2,4 +2,6 @@
     <string name="app_name">TheSongApp</string>
   <string name="please_select_source_of_songs">Please select source of songs</string>
   <string name="year_format">Year: %d</string>
+  <string name="local_songs">Local songs</string>
+  <string name="remote_songs">Remote songs</string>
 </resources>
