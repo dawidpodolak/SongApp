@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: "kotlin-allopen"
 
 android {
   compileSdkVersion global_compileSdkVersion
@@ -24,10 +25,22 @@ android {
   }
 }
 
+allOpen {
+  annotation("com.mobisoft.songapp.data.utils.OpenInTest")
+}
+
+
 dependencies {
   implementation project (':data')
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
   kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+
+  //tests
+  testImplementation "junit:junit:$junit_version"
+  testImplementation "org.mockito:mockito-core:$mockito_version"
+  testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
+
 }
 repositories {
   mavenCentral()
