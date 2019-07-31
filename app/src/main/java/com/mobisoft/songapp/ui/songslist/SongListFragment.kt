@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -25,49 +26,69 @@ import javax.inject.Inject
  */
 class SongListFragment : Fragment(), Injectable {
 
-    companion object {
-        const val TAG = "SongListFragment"
+  companion object {
+    const val TAG = "SongListFragment"
+  }
+
+  @Inject
+  lateinit var viewModelFactory: ViewModelFactory
+
+  private lateinit var songListViewModel: SongListViewModel
+
+  private lateinit var binding: SongListFragmentBinding
+
+  private lateinit var songRecyclerView: RecyclerView
+  private lateinit var songsPlaceholder: TextView
+
+  private lateinit var songListAdapter: SongListAdapter
+
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    binding = DataBindingUtil.inflate(inflater, R.layout.song_list_fragment, container, false)
+    songRecyclerView = binding.songsRecyclerView
+    songsPlaceholder = binding.emptySongsPlaceHolder
+
+    binding.lifecycleOwner = this
+
+
+    songListAdapter = SongListAdapter(requireContext())
+    songRecyclerView.adapter = songListAdapter
+
+    songRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+    setupToolbar()
+
+    return binding.root
+  }
+
+  private fun setupToolbar() {
+    if (activity is AppCompatActivity) {
+      with(activity as AppCompatActivity) {
+        setSupportActionBar(binding.toolbar)
+      }
     }
+  }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+  override fun onViewCreated(
+    view: View,
+    savedInstanceState: Bundle?
+  ) {
+    songListViewModel = ViewModelProviders.of(this, viewModelFactory)
+        .get(SongListViewModel::class.java)
+    binding.viewModel = songListViewModel
 
-    private lateinit var songListViewModel: SongListViewModel
+    subscribeToViewModel()
+  }
 
-    private lateinit var binding: SongListFragmentBinding
-
-    private lateinit var songRecyclerView: RecyclerView
-    private lateinit var songsPlaceholder: TextView
-
-    private lateinit var songListAdapter: SongListAdapter
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.song_list_fragment, container, false)
-        songRecyclerView = binding.songsRecyclerView
-        songsPlaceholder = binding.emptySongsPlaceHolder
-
-        binding.lifecycleOwner = this
-
-        songListAdapter = SongListAdapter(requireContext())
-        songRecyclerView.adapter = songListAdapter
-
-        songRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        songListViewModel = ViewModelProviders.of(this, viewModelFactory).get(SongListViewModel::class.java)
-        binding.viewModel = songListViewModel
-
-        subscribeToViewModel()
-    }
-
-    private fun subscribeToViewModel() {
-        songListViewModel.getListSongs().observe(this,
+  private fun subscribeToViewModel() {
+    songListViewModel.getListSongs()
+        .observe(this,
             Observer<List<Song>> {
-                songsPlaceholder.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
-                songListAdapter.setSongs(it)
+              songsPlaceholder.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
+              songListAdapter.setSongs(it)
             })
-    }
+  }
 }
