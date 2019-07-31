@@ -13,6 +13,7 @@ import dagger.android.AndroidInjectionModule
  * @author Dawid Podolak
  * Created at 2019-07-29
  */
+@AppScope
 @Component(
     modules = [AndroidInjectionModule::class, ActivityModule::class, ViewModelModule::class, AppModule::class],
     dependencies = [DomainComponent::class]
