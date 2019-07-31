@@ -1,6 +1,6 @@
 package com.mobisoft.songapp.domain.usecase
 
-import com.mobisoft.songapp.data.entity.SongEntity
+import com.mobisoft.songapp.domain.entity.Song
 import io.reactivex.Single
 
 /**
@@ -9,5 +9,5 @@ import io.reactivex.Single
  */
 interface GetSongs {
 
-    fun getSongs(remote: Boolean, local: Boolean): Single<List<SongEntity>>
+    fun getSongs(remote: Boolean, local: Boolean): Single<List<Song>>
 }

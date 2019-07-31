@@ -4,6 +4,7 @@ import com.mobisoft.songapp.domain.usecase.GetSongs
 import com.mobisoft.songapp.vm.BaseViewModel
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
+import java.lang.StringBuilder
 import javax.inject.Inject
 
 /**
@@ -17,10 +18,15 @@ class SongListViewModel @Inject constructor(
     init {
         Timber.d("init SongListViewModel")
 
-        getSongs.getSongs(true, true)
+        getSongs.getSongs(remote = true, local = true)
             .subscribeOn(Schedulers.io())
             .subscribe({
-                Timber.d("Song: $it")
+
+                val stringBuilder = StringBuilder()
+                it.forEach {
+                    stringBuilder.append(it).append("\n")
+                }
+                Timber.d("Songs: \n$stringBuilder")
             }, {
                 Timber.e(it)
             })
