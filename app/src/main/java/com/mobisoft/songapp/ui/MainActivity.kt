@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     supportFragmentManager
       .beginTransaction()
-      .add(R.id.fragment_container, SongListFragment(), SongListFragment.TAG)
+      .replace(R.id.fragment_container, SongListFragment(), SongListFragment.TAG)
       .commit()
   }
 

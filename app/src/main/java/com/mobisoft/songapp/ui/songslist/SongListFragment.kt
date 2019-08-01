@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -20,6 +22,7 @@ import com.mobisoft.songapp.di.Injectable
 import com.mobisoft.songapp.domain.entity.Song
 import com.mobisoft.songapp.ui.songslist.recyclerView.SongListAdapter
 import com.mobisoft.songapp.vm.ViewModelFactory
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -77,6 +80,30 @@ class SongListFragment : Fragment(), Injectable {
 
   override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
     inflater?.inflate(R.menu.toolbar_menu, menu)
+    menu?.findItem(R.id.menu_remote_songs)?.isChecked = songListViewModel.isRemote.value == true
+    menu?.findItem(R.id.menu_local_songs)?.isChecked = songListViewModel.isLocal.value == true
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    when (item?.itemId) {
+      R.id.menu_local_songs -> {
+        item.isChecked = !item.isChecked
+        songListViewModel.setLocal(item.isChecked)
+        Timber.d("local song clicked")
+      }
+      R.id.menu_remote_songs -> {
+        item.isChecked = !item.isChecked
+        songListViewModel.setRemote(item.isChecked)
+        Timber.d("remote song clicked")
+      }
+    }
+    return true
+  }
+
+  private fun setMenuCheckBoxState(item: MenuItem?) {
+    with(item?.actionView as CheckBox) {
+      isChecked = !isChecked
+    }
   }
 
   override fun onViewCreated(
