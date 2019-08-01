@@ -1,6 +1,7 @@
 package com.mobisoft.songapp.data.di.modules
 
 import android.content.Context
+import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 
@@ -13,4 +14,7 @@ class RepositoryModule (private val context: Context) {
 
     @Provides
     fun providesContext(): Context = context
+
+    @Provides
+    fun provideGson(): Gson = Gson()
 }

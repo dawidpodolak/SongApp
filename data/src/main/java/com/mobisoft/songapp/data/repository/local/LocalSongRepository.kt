@@ -20,7 +20,8 @@ import javax.inject.Inject
 @DataScope
 internal class LocalSongRepository @Inject constructor(
     private val songProvider: LocalSongProvider,
-    private val songMapper: Mapper<@JvmSuppressWildcards LocalSongModel, SongEntity>
+    private val songMapper: Mapper<@JvmSuppressWildcards LocalSongModel, SongEntity>,
+    private val gson: Gson
 ) : SongRepository {
 
     override fun getSongs(): Single<List<SongEntity>> = songProvider.getSongs()
@@ -34,7 +35,7 @@ internal class LocalSongRepository @Inject constructor(
 
     private fun convertInputStreamIntoSongList(inputStream: InputStream): List<LocalSongModel> {
         val type = object : TypeToken<ArrayList<LocalSongModel>>() {}.type
-        return Gson().fromJson<ArrayList<LocalSongModel>>(
+        return gson.fromJson<ArrayList<LocalSongModel>>(
             InputStreamReader(inputStream, Charset.defaultCharset()),
             type
         )

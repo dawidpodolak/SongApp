@@ -28,10 +28,6 @@ class SongListViewModel @Inject constructor(
         value = true
     }
 
-    var isRemote: LiveData<Boolean> = remoteEnabled
-
-    var isLocal: LiveData<Boolean> = localEnabled
-
     init {
         Timber.d("init SongListViewModel")
 
@@ -55,6 +51,11 @@ class SongListViewModel @Inject constructor(
     }
 
     fun getListSongs(): LiveData<List<Song>> = songsLiveData
+
+    fun isRemoteEnabled(): LiveData<Boolean> = remoteEnabled
+
+    fun isLocalEnabled(): LiveData<Boolean> = localEnabled
+
 
     fun setLocal(checked: Boolean) {
         localEnabled.value = checked

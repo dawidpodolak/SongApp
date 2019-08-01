@@ -30,8 +30,10 @@ class SongListAdapter(private val context: Context) : RecyclerView.Adapter<SongL
   }
 
   fun setSongs(songs: List<Song>) {
-    songList.clear()
-    songList.addAll(songs)
+    songList.apply {
+      clear()
+      addAll(songs)
+    }
     notifyDataSetChanged()
   }
 
