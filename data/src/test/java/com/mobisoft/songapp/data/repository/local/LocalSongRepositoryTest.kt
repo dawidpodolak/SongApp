@@ -1,6 +1,7 @@
 package com.mobisoft.songapp.data.repository.local
 
 import LOCAL_TEST_JSON
+import com.google.gson.Gson
 import com.mobisoft.songapp.data.entity.SongEntity
 import com.mobisoft.songapp.data.mapper.LocalSongModelToEntityMapper
 import com.mobisoft.songapp.common.mapper.Mapper
@@ -23,12 +24,13 @@ class LocalSongRepositoryTest {
 
     private val songProvider: LocalSongProvider = mock(LocalSongProvider::class.java)
     private val mapper: Mapper<LocalSongModel, SongEntity> = spy(LocalSongModelToEntityMapper())
+    private val gson = Gson()
 
     private lateinit var testTarget: LocalSongRepository
 
     @Before
     fun setup() {
-        testTarget = LocalSongRepository(songProvider, mapper)
+        testTarget = LocalSongRepository(songProvider, mapper, gson)
     }
 
     @Test

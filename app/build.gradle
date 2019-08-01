@@ -4,13 +4,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion global_compileSdkVersion
-    buildToolsVersion global_buildToolsVersion
+    compileSdkVersion config.compileSdk
+    buildToolsVersion config.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.mobisoft.thesongapp"
-        minSdkVersion global_minSdkVersion
-        targetSdkVersion global_targetSdkVersion
+        applicationId config.appId
+        minSdkVersion config.minSdk
+        targetSdkVersion config.targetSdk
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
