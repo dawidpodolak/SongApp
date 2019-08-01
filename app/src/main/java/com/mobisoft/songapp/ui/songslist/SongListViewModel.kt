@@ -45,13 +45,6 @@ class SongListViewModel @Inject constructor(
         getSongs.getSongs(remote = isRemoteEnabled, local = isLocalEnabled)
             .subscribeOn(Schedulers.io())
             .subscribe({
-
-                val stringBuilder = StringBuilder()
-                it.forEach {
-                    stringBuilder.append(it).append("\n")
-                }
-                Timber.d("Songs: \n$stringBuilder")
-
                 songsLiveData.postValue(it)
             }, {
                 Timber.e(it)
