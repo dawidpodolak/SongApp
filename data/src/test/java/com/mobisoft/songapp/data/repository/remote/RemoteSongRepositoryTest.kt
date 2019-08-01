@@ -4,7 +4,7 @@ import REMOTE_TEST_JSON
 import com.google.gson.Gson
 import com.mobisoft.songapp.data.entity.SongEntity
 import com.mobisoft.songapp.data.mapper.ITunesModelToSongEntityMapper
-import com.mobisoft.songapp.data.mapper.Mapper
+import com.mobisoft.songapp.common.mapper.Mapper
 import com.mobisoft.songapp.data.repository.remote.api.ItunesApi
 import com.mobisoft.songapp.data.repository.remote.model.ITunesSearchModel
 import com.nhaarman.mockitokotlin2.any

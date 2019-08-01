@@ -1,4 +1,4 @@
-package com.mobisoft.songapp.data.utils
+package com.mobisoft.songapp.common.utils
 
 /**
  * @author Dawid Podolak

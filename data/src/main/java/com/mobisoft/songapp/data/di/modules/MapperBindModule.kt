@@ -1,9 +1,9 @@
 package com.mobisoft.songapp.data.di.modules
 
+import com.mobisoft.songapp.common.mapper.Mapper
 import com.mobisoft.songapp.data.entity.SongEntity
 import com.mobisoft.songapp.data.mapper.ITunesModelToSongEntityMapper
 import com.mobisoft.songapp.data.mapper.LocalSongModelToEntityMapper
-import com.mobisoft.songapp.data.mapper.Mapper
 import com.mobisoft.songapp.data.repository.model.LocalSongModel
 import com.mobisoft.songapp.data.repository.remote.model.ITunesSearchModel
 import dagger.Binds

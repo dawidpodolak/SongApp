@@ -26,13 +26,11 @@ android {
 }
 
 allOpen {
-  annotation("com.mobisoft.songapp.data.utils.OpenInTest")
+  annotation("com.mobisoft.songapp.common.utils.OpenInTest")
 }
 
-
 dependencies {
-  implementation project (':data')
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  api project (':data')
   kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
 
@@ -42,6 +40,7 @@ dependencies {
   testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
 
 }
+
 repositories {
   mavenCentral()
 }
