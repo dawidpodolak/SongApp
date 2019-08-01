@@ -100,19 +100,15 @@ class SongListFragment : Fragment(), Injectable {
     return true
   }
 
-  private fun setMenuCheckBoxState(item: MenuItem?) {
-    with(item?.actionView as CheckBox) {
-      isChecked = !isChecked
-    }
-  }
-
   override fun onViewCreated(
     view: View,
     savedInstanceState: Bundle?
   ) {
-    songListViewModel = ViewModelProviders.of(this, viewModelFactory)
+    songListViewModel = ViewModelProviders.of(requireActivity(), viewModelFactory)
         .get(SongListViewModel::class.java)
     binding.viewModel = songListViewModel
+
+    Timber.d("viewmodel factory: $viewModelFactory")
 
     subscribeToViewModel()
   }
