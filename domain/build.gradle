@@ -31,7 +31,7 @@ allOpen {
 
 
 dependencies {
-  implementation project (':data')
+  api project (':data')
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
   kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
