@@ -2,6 +2,7 @@ package com.mobisoft.songapp.vm
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 /**
  * @author Dawid Podolak
@@ -14,4 +15,6 @@ open class BaseViewModel: ViewModel() {
     override fun onCleared() {
         compositeDisposable.clear()
     }
+
+    fun Disposable.collect() = compositeDisposable.add(this)
 }

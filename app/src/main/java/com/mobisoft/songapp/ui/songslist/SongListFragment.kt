@@ -7,9 +7,9 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -80,8 +80,8 @@ class SongListFragment : Fragment(), Injectable {
 
   override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
     inflater?.inflate(R.menu.toolbar_menu, menu)
-    menu?.findItem(R.id.menu_remote_songs)?.isChecked = songListViewModel.isRemote.value == true
-    menu?.findItem(R.id.menu_local_songs)?.isChecked = songListViewModel.isLocal.value == true
+    menu?.findItem(R.id.menu_remote_songs)?.isChecked = songListViewModel.isRemoteEnabled().value == true
+    menu?.findItem(R.id.menu_local_songs)?.isChecked = songListViewModel.isLocalEnabled().value == true
   }
 
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -117,7 +117,7 @@ class SongListFragment : Fragment(), Injectable {
     songListViewModel.getListSongs()
         .observe(this,
             Observer<List<Song>> {
-              songsPlaceholder.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
+              songsPlaceholder.isVisible = it.isEmpty()
               songListAdapter.setSongs(it)
             })
   }

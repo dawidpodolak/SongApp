@@ -5,12 +5,11 @@ apply plugin: 'kotlin-kapt'
 apply plugin: "kotlin-allopen"
 
 android {
-    compileSdkVersion global_compileSdkVersion
-
+    compileSdkVersion config.compileSdk
 
     defaultConfig {
-        minSdkVersion global_minSdkVersion
-        targetSdkVersion global_targetSdkVersion
+        minSdkVersion config.minSdk
+        targetSdkVersion config.targetSdk
 
         buildConfigField("String", "REMOTE_API_ADDRESS", "\"https://itunes.apple.com\"")
     }
