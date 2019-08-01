@@ -44,10 +44,7 @@ class SongListViewModel @Inject constructor(
                 songsLiveData.postValue(it)
             }, {
                 Timber.e(it)
-            })
-            .also {
-                compositeDisposable.add(it)
-            }
+            }).collect()
     }
 
     fun getListSongs(): LiveData<List<Song>> = songsLiveData
