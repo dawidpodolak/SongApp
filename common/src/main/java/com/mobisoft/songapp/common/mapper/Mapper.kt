@@ -1,4 +1,4 @@
-package com.mobisoft.songapp.data.mapper
+package com.mobisoft.songapp.common.mapper
 
 /**
  * @author Dawid Podolak

@@ -1,7 +1,7 @@
 package com.mobisoft.songapp.domain.di.modules
 
+import com.mobisoft.songapp.common.mapper.Mapper
 import com.mobisoft.songapp.data.entity.SongEntity
-import com.mobisoft.songapp.data.mapper.Mapper
 import com.mobisoft.songapp.domain.entity.Song
 import com.mobisoft.songapp.domain.mapper.SongEnitytyToSongMapper
 import dagger.Binds

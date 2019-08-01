@@ -1,8 +1,8 @@
 package com.mobisoft.songapp.domain.mapper
 
+import com.mobisoft.songapp.common.mapper.Mapper
 import com.mobisoft.songapp.data.entity.SongEntity
-import com.mobisoft.songapp.data.mapper.Mapper
-import com.mobisoft.songapp.data.utils.OpenInTest
+import com.mobisoft.songapp.common.utils.OpenInTest
 import com.mobisoft.songapp.domain.entity.Song
 import javax.inject.Inject
 

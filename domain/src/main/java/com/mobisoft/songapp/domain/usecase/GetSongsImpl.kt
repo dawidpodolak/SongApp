@@ -1,10 +1,10 @@
 package com.mobisoft.songapp.domain.usecase
 
+import com.mobisoft.songapp.common.mapper.Mapper
 import com.mobisoft.songapp.data.di.qualifiers.RepoSongQualifier
 import com.mobisoft.songapp.data.di.qualifiers.RepoSongQualifier.StoreType.Local
 import com.mobisoft.songapp.data.di.qualifiers.RepoSongQualifier.StoreType.Remote
 import com.mobisoft.songapp.data.entity.SongEntity
-import com.mobisoft.songapp.data.mapper.Mapper
 import com.mobisoft.songapp.data.repository.SongRepository
 import com.mobisoft.songapp.domain.di.DomainScope
 import com.mobisoft.songapp.domain.entity.Song

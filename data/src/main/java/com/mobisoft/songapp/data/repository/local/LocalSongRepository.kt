@@ -4,7 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mobisoft.songapp.data.di.DataScope
 import com.mobisoft.songapp.data.entity.SongEntity
-import com.mobisoft.songapp.data.mapper.Mapper
+import com.mobisoft.songapp.common.mapper.Mapper
 import com.mobisoft.songapp.data.repository.SongRepository
 import com.mobisoft.songapp.data.repository.model.LocalSongModel
 import io.reactivex.Single

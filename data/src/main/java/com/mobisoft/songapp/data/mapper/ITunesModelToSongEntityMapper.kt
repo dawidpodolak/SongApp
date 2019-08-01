@@ -1,8 +1,9 @@
 package com.mobisoft.songapp.data.mapper
 
+import com.mobisoft.songapp.common.mapper.Mapper
 import com.mobisoft.songapp.data.entity.SongEntity
 import com.mobisoft.songapp.data.repository.remote.model.ITunesSearchModel
-import com.mobisoft.songapp.data.utils.OpenInTest
+import com.mobisoft.songapp.common.utils.OpenInTest
 import javax.inject.Inject
 
 /**
@@ -10,7 +11,8 @@ import javax.inject.Inject
  * Created at 2019-07-31
  */
 @OpenInTest
-class ITunesModelToSongEntityMapper @Inject constructor() : Mapper<ITunesSearchModel.ITunesSearchResultItem, SongEntity> {
+internal class ITunesModelToSongEntityMapper @Inject constructor() :
+    Mapper<ITunesSearchModel.ITunesSearchResultItem, SongEntity> {
     override fun map(value: ITunesSearchModel.ITunesSearchResultItem): SongEntity = with(value) {
             SongEntity(
                 title = trackName,
