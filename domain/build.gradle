@@ -1,8 +1,7 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-apply plugin: "kotlin-allopen"
+rootProject.libPlugins.forEach{
+  apply plugin: it
+}
+
 
 android {
   compileSdkVersion config.compileSdk
@@ -31,14 +30,14 @@ allOpen {
 
 dependencies {
   api project (':data')
-  kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
+  domainKaptDependencies.each {
+    add('kapt', it)
+  }
 
-  //tests
-  testImplementation "junit:junit:$junit_version"
-  testImplementation "org.mockito:mockito-core:$mockito_version"
-  testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
-
+  testImplementationDependencies.each {
+    add('testImplementation', it)
+  }
 }
 
 repositories {
