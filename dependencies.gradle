@@ -14,8 +14,90 @@ ext {
     retrofit_rxajava_adapter_version = "1.0.0"
     okhttp_version = "3.13.1"
 
+    timber_version = "4.5.1"
+
     junit_version = "4.12"
     mockito_version = "2.23.4"
     mockito_kotlin_version = "2.1.0"
+
+
+    appPlugins = [
+            'com.android.application',
+            'kotlin-android',
+            'kotlin-android-extensions',
+            'kotlin-kapt'
+
+    ]
+
+    libPlugins = [
+            'com.android.library',
+            'kotlin-android',
+            'kotlin-android-extensions',
+            'kotlin-kapt',
+            'kotlin-allopen'
+    ]
+
+    appImplementationDependencies = [
+            "androidx.appcompat:appcompat:$appcompat_version",
+            "androidx.recyclerview:recyclerview:$recycleview_version",
+            "androidx.core:core-ktx:$androidx_core_version",
+            "androidx.constraintlayout:constraintlayout:$constraintlayout_version",
+            'com.android.support:cardview-v7:28.0.0',
+
+            //lifecycle
+            "androidx.lifecycle:lifecycle-runtime:$lifecycle_version",
+            "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
+            "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
+
+            //dagger
+            "com.google.dagger:dagger-android:$dagger_version",
+            "com.google.dagger:dagger-android-support:$dagger_version",
+
+    ]
+
+    appKaptDependencies = [
+            "androidx.lifecycle:lifecycle-compiler:$lifecycle_version",
+            "com.google.dagger:dagger-compiler:$dagger_version",
+            "com.google.dagger:dagger-android-processor:$dagger_version"
+    ]
+
+    commonApiDependencies = [
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            "com.google.dagger:dagger:$dagger_version",
+            "io.reactivex.rxjava2:rxjava:$rxjava_version",
+
+            //timber
+            "com.jakewharton.timber:timber:$timber_version",
+    ]
+
+    dataImplementationDependencies = [
+            "com.google.code.gson:gson:$gson_version",
+            "com.squareup.retrofit2:converter-gson:$retrofit_version",
+            "com.squareup.retrofit2:retrofit:$retrofit_version",
+            "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofit_rxajava_adapter_version",
+            "com.squareup.okhttp3:okhttp:$okhttp_version",
+    ]
+
+    dataKaptDependencies = [
+            "com.google.dagger:dagger-compiler:$dagger_version"
+    ]
+
+    domainKaptDependencies = [
+            "com.google.dagger:dagger-compiler:$dagger_version"
+    ]
+
+
+    testImplementationDependencies = [
+            "junit:junit:$junit_version",
+            "org.mockito:mockito-core:$mockito_version",
+            "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version",
+            "android.arch.core:core-testing:$lifecycle_version",
+    ]
+
+    androidTestImplementation = [
+            'androidx.test:runner:1.2.0',
+            'androidx.test.espresso:espresso-core:3.2.0',
+    ]
+
 
 }
