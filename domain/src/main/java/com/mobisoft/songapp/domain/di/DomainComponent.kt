@@ -10,7 +10,7 @@ import dagger.Component
  * Created at 2019-07-29
  */
 @DomainScope
-@Component(modules = [DomainBindsModule::class, MapperBindsModule::class, RepositoryBridgeModule::class])
+@Component(modules = [DomainBindsModule::class, RepositoryBridgeModule::class])
 interface DomainComponent {
 
     fun getSongs(): GetSongs

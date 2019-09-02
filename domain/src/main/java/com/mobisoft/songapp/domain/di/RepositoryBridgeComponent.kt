@@ -7,6 +7,7 @@ import com.mobisoft.songapp.domain.repository.SongRepository
  * @author Dawid Podolak
  * Created at 2019-09-02
  */
+
 interface RepositoryBridgeComponent {
 
 
