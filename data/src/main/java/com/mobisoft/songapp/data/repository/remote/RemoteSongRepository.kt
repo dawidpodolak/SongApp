@@ -1,11 +1,13 @@
 package com.mobisoft.songapp.data.repository.remote
 
 import com.mobisoft.songapp.data.di.DataScope
-import com.mobisoft.songapp.data.entity.SongEntity
+import com.mobisoft.songapp.domain.entity.SongEntity
 import com.mobisoft.songapp.common.mapper.Mapper
-import com.mobisoft.songapp.data.repository.SongRepository
 import com.mobisoft.songapp.data.repository.remote.api.ItunesApi
 import com.mobisoft.songapp.data.repository.remote.model.ITunesSearchModel
+import com.mobisoft.songapp.data.repository.remote.model.ITunesSearchModel.*
+import com.mobisoft.songapp.domain.mapper.SongEntityMapper
+import com.mobisoft.songapp.domain.repository.SongRepository
 import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
@@ -17,7 +19,7 @@ import javax.inject.Inject
 @DataScope
 internal class RemoteSongRepository @Inject constructor(
     private val api: ItunesApi,
-    private val mapper: Mapper<@JvmSuppressWildcards ITunesSearchModel.ITunesSearchResultItem, SongEntity>
+    private val mapper: SongEntityMapper<@JvmSuppressWildcards ITunesSearchResultItem>
 ) : SongRepository {
 
 

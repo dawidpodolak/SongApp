@@ -17,8 +17,10 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
   lateinit var dispatchAndroidInjector: DispatchingAndroidInjector<Fragment>
 
   override fun onCreate(savedInstanceState: Bundle?) {
+
     super.onCreate(savedInstanceState)
     setContentView(R.layout.main_activity)
+
 
     supportFragmentManager
       .beginTransaction()

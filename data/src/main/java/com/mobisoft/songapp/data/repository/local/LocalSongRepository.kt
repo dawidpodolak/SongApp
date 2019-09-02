@@ -3,10 +3,11 @@ package com.mobisoft.songapp.data.repository.local
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mobisoft.songapp.data.di.DataScope
-import com.mobisoft.songapp.data.entity.SongEntity
 import com.mobisoft.songapp.common.mapper.Mapper
-import com.mobisoft.songapp.data.repository.SongRepository
-import com.mobisoft.songapp.data.repository.model.LocalSongModel
+import com.mobisoft.songapp.data.repository.local.model.LocalSongModel
+import com.mobisoft.songapp.domain.entity.SongEntity
+import com.mobisoft.songapp.domain.mapper.SongEntityMapper
+import com.mobisoft.songapp.domain.repository.SongRepository
 import io.reactivex.Single
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -20,13 +21,13 @@ import javax.inject.Inject
 @DataScope
 internal class LocalSongRepository @Inject constructor(
     private val songProvider: LocalSongProvider,
-    private val songMapper: Mapper<@JvmSuppressWildcards LocalSongModel, SongEntity>,
+    private val songMapper: SongEntityMapper<@JvmSuppressWildcards LocalSongModel>,
     private val gson: Gson
 ) : SongRepository {
 
     override fun getSongs(): Single<List<SongEntity>> = songProvider.getSongs()
         .run {
-            Single.fromCallable<List<SongEntity>> {
+            Single.fromCallable {
                 convertInputStreamIntoSongList(this)
                     .map { songMapper.map(it) }
             }

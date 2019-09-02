@@ -1,4 +1,4 @@
-rootProject.libPlugins.forEach{
+rootProject.androidLibPlugins.forEach{
   apply plugin: it
 }
 
@@ -29,7 +29,10 @@ allOpen {
 }
 
 dependencies {
-  api project (':data')
+
+  domainDependencies.each {
+    add('implementation', it)
+  }
 
   domainKaptDependencies.each {
     add('kapt', it)

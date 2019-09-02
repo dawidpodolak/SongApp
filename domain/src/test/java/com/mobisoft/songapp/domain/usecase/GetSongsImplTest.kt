@@ -1,7 +1,7 @@
 package com.mobisoft.songapp.domain.usecase
 
-import com.mobisoft.songapp.data.repository.SongRepository
-import com.mobisoft.songapp.domain.mapper.SongEnitytyToSongMapper
+import com.mobisoft.songapp.domain.repository.SongRepository
+import com.mobisoft.songapp.data.mapper.mapper.SongEnitytyToSongMapper
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -17,7 +17,7 @@ class GetSongsImplTest {
     private val localRepository: SongRepository = mock(SongRepository::class.java)
     private val remoteRepository: SongRepository = mock(SongRepository::class.java)
 
-    private val mapper = spy(SongEnitytyToSongMapper())
+    private val mapper = spy(com.mobisoft.songapp.data.mapper.mapper.SongEnitytyToSongMapper())
 
     private lateinit var testTarget: GetSongsImpl
 
@@ -84,5 +84,17 @@ class GetSongsImplTest {
             val secondLocalSongsFound = LOCAL_SONGS.find { it.title == songs[1].title } != null
             firstLocalSongsFound && secondLocalSongsFound
         }
+    }
+
+    @Test
+    fun `test of async`() {
+        //when
+        whenever(localRepository.getSongs()).thenReturn(Single.fromCallable { LOCAL_SONGS })
+        whenever(remoteRepository.getSongs()).thenReturn(Single.fromCallable { REMOTE_SONGS })
+
+        //then
+        testTarget.getSongs1(remote = true, local = true).test().awaitTerminalEvent()
+
+
     }
 }

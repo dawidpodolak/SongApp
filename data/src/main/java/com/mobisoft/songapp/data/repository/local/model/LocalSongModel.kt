@@ -1,4 +1,4 @@
-package com.mobisoft.songapp.data.repository.model
+package com.mobisoft.songapp.data.repository.local.model
 
 import com.google.gson.annotations.SerializedName
 

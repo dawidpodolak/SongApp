@@ -4,7 +4,7 @@
   <data>
     <variable
         name="song"
-        type="com.mobisoft.songapp.domain.entity.Song"
+        type="com.mobisoft.songapp.domain.entity.SongEntity"
         />
   </data>
   <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/song_item_artist"
-            app:formatYear="@{song.year}"
+            app:formatYear="@{song.releaseYear}"
             />
 
       </androidx.constraintlayout.widget.ConstraintLayout>

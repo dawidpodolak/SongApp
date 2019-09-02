@@ -1,6 +1,5 @@
-package com.mobisoft.songapp.data.di.qualifiers
+package com.mobisoft.songapp.domain.di.qualifiers
 
-import java.lang.annotation.Documented
 import javax.inject.Qualifier
 import kotlin.annotation.AnnotationRetention.*
 
@@ -13,5 +12,5 @@ import kotlin.annotation.AnnotationRetention.*
 @Retention(RUNTIME)
 annotation class RepoSongQualifier(val store: StoreType) {
 
-    enum class StoreType { Local, Remote}
+    enum class StoreType { Local, Remote }
 }

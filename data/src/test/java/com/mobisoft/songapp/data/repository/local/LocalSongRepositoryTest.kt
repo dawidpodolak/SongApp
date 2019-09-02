@@ -2,10 +2,10 @@ package com.mobisoft.songapp.data.repository.local
 
 import LOCAL_TEST_JSON
 import com.google.gson.Gson
-import com.mobisoft.songapp.data.entity.SongEntity
+import com.mobisoft.songapp.domain.entity.SongEntity
 import com.mobisoft.songapp.data.mapper.LocalSongModelToEntityMapper
 import com.mobisoft.songapp.common.mapper.Mapper
-import com.mobisoft.songapp.data.repository.model.LocalSongModel
+import com.mobisoft.songapp.data.repository.local.model.LocalSongModel
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever

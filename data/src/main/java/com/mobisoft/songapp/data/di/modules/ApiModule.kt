@@ -17,6 +17,7 @@ import javax.inject.Named
  */
 @Module
 class ApiModule {
+
     @Provides
     @Named(API_ADDRESS_QUALIFIER)
     fun providesRemoteApiAddress(): String = BuildConfig.REMOTE_API_ADDRESS

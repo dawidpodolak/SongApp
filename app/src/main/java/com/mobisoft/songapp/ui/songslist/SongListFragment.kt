@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mobisoft.songapp.R
 import com.mobisoft.songapp.databinding.SongListFragmentBinding
 import com.mobisoft.songapp.di.Injectable
-import com.mobisoft.songapp.domain.entity.Song
+import com.mobisoft.songapp.domain.entity.SongEntity
 import com.mobisoft.songapp.ui.songslist.recyclerView.SongListAdapter
 import com.mobisoft.songapp.vm.ViewModelFactory
 import timber.log.Timber
@@ -116,7 +116,7 @@ class SongListFragment : Fragment(), Injectable {
   private fun subscribeToViewModel() {
     songListViewModel.getListSongs()
         .observe(this,
-            Observer<List<Song>> {
+            Observer<List<SongEntity>> {
               songsPlaceholder.isVisible = it.isEmpty()
               songListAdapter.setSongs(it)
             })

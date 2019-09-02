@@ -1,4 +1,4 @@
-rootProject.libPlugins.forEach{
+rootProject.androidLibPlugins.forEach{
     apply plugin: it
 }
 
@@ -34,7 +34,7 @@ allOpen {
 
 
 dependencies {
-    api project(":common")
+    implementation project (':domain')
 
     dataImplementationDependencies.each {
         add('implementation', it)

@@ -2,12 +2,11 @@ package com.mobisoft.songapp.ui.songslist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.mobisoft.songapp.domain.entity.Song
+import com.mobisoft.songapp.domain.entity.SongEntity
 import com.mobisoft.songapp.domain.usecase.GetSongs
 import com.mobisoft.songapp.vm.BaseViewModel
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
-import java.lang.StringBuilder
 import javax.inject.Inject
 
 /**
@@ -18,7 +17,7 @@ class SongListViewModel @Inject constructor(
     private val getSongs: GetSongs
 ) : BaseViewModel() {
 
-    private val songsLiveData = MutableLiveData<List<Song>>()
+    private val songsLiveData = MutableLiveData<List<SongEntity>>()
 
     private val remoteEnabled = MutableLiveData<Boolean>().apply {
         value = true
@@ -47,7 +46,7 @@ class SongListViewModel @Inject constructor(
             }).collect()
     }
 
-    fun getListSongs(): LiveData<List<Song>> = songsLiveData
+    fun getListSongs(): LiveData<List<SongEntity>> = songsLiveData
 
     fun isRemoteEnabled(): LiveData<Boolean> = remoteEnabled
 

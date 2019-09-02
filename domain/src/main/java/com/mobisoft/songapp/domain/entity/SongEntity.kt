@@ -1,4 +1,4 @@
-package com.mobisoft.songapp.data.entity
+package com.mobisoft.songapp.domain.entity
 
 /**
  * @author Dawid Podolak

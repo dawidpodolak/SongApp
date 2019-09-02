@@ -1,6 +1,6 @@
-package com.mobisoft.songapp.data.repository
+package com.mobisoft.songapp.domain.repository
 
-import com.mobisoft.songapp.data.entity.SongEntity
+import com.mobisoft.songapp.domain.entity.SongEntity
 import io.reactivex.Single
 
 /**

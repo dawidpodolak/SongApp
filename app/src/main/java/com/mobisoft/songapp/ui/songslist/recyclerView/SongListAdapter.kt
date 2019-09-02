@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mobisoft.songapp.R
 import com.mobisoft.songapp.databinding.SongItemBinding
-import com.mobisoft.songapp.domain.entity.Song
+import com.mobisoft.songapp.domain.entity.SongEntity
 
 /**
  * @author Dawid Podolak
@@ -21,7 +21,7 @@ class SongListAdapter(private val context: Context) : RecyclerView.Adapter<SongL
     DataBindingUtil.inflate<SongItemBinding>(inflater, R.layout.song_item, parent, false)
         .run { SongViewHolder(this) }
 
-  private var songList = mutableListOf<Song>()
+  private var songList = mutableListOf<SongEntity>()
 
   override fun getItemCount(): Int = songList.size
 
@@ -29,7 +29,7 @@ class SongListAdapter(private val context: Context) : RecyclerView.Adapter<SongL
     holder.binding.song = songList[position]
   }
 
-  fun setSongs(songs: List<Song>) {
+  fun setSongs(songs: List<SongEntity>) {
     songList.apply {
       clear()
       addAll(songs)

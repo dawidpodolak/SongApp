@@ -2,7 +2,7 @@ package com.mobisoft.songapp.data.repository.remote
 
 import REMOTE_TEST_JSON
 import com.google.gson.Gson
-import com.mobisoft.songapp.data.entity.SongEntity
+import com.mobisoft.songapp.domain.entity.SongEntity
 import com.mobisoft.songapp.data.mapper.ITunesModelToSongEntityMapper
 import com.mobisoft.songapp.common.mapper.Mapper
 import com.mobisoft.songapp.data.repository.remote.api.ItunesApi

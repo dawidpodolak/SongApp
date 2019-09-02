@@ -1,7 +1,5 @@
 package com.mobisoft.songapp.ui.songslist
 
-import com.mobisoft.songapp.domain.entity.Song
-
 /**
  * @author Dawid Podolak
  * Created at 2019-08-01
